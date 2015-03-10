@@ -34,7 +34,8 @@ include Makefile
 OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
-OBJECTFILES=
+OBJECTFILES= \
+	${OBJECTDIR}/src/forecaster/forecaster.o
 
 
 # C Compiler Flags
@@ -62,6 +63,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libtrading_engine_lib.a: ${OBJECTFILE
 	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libtrading_engine_lib.a
 	${AR} -rv ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libtrading_engine_lib.a ${OBJECTFILES} 
 	$(RANLIB) ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libtrading_engine_lib.a
+
+${OBJECTDIR}/src/forecaster/forecaster.o: src/forecaster/forecaster.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/forecaster
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/forecaster/forecaster.o src/forecaster/forecaster.cpp
 
 # Subprojects
 .build-subprojects:
